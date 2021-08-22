@@ -1,0 +1,22 @@
+{
+  "name": "my-awesome-package",
+  "version": "1.0.0",
+  "description": "The best package you will ever find.",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/yarnpkg/example-yarn-package",
+    "type": "git"
+  },
+  "scripts": {
+    "dev": "npx nodemon server.js"
+  },
+  "author": "Yarn Contributor",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1",
+    "express-handlebars": "3.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
