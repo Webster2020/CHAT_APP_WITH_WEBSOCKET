@@ -5,6 +5,18 @@ const addMessageForm = document.querySelector('#add-messages-form');
 const userNameInput = document.querySelector('#username');
 const messageContentInput = document.querySelector('#message-content');
 
+const socket = io();
+//socket.connect("localhost:8000");
+// socket.on('message', addMessage);
+// socket.on('message', (event) => addMessage(event.author, event.content))
+socket.on('message', ({ author, content }) => addMessage(author, content));
+
+socket.on('joinNew', (user) => addMessage('ChatBot', `${user} has joined the conversation!`));
+
+socket.on('userLeft', () => addMessage('ChatBot', `${socket.id} has left the conversation!`));
+
+// socket.on('joinNewUser', (author, content) => addMessage(author, content));
+
 let userName = '';
 
 const login = function() {
@@ -12,6 +24,8 @@ const login = function() {
     alert('You input no user name!');
   } else {
     userName = userNameInput.value;
+    socket.emit('join', {name: userName});
+    socket.emit('joinNew', userName);
     loginForm.classList.remove('show');
     messagesSection.classList.add('show');
   }
@@ -24,6 +38,7 @@ const sendMessage = function(e) {
     alert('Empty message!');
   } else {
     addMessage(userName, messageContentInput.value);
+    socket.emit('message', { author: userName, content: messageContentInput.value })
     messageContentInput.value = '';
   }
 }
@@ -50,3 +65,4 @@ addMessageForm.addEventListener('submit', function(e) {
   e.preventDefault();
   sendMessage(e);
 });
+

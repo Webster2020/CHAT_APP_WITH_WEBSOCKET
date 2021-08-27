@@ -98,7 +98,20 @@ p {
   color: #fff;
   font-size: 0.9rem;
   max-width: 200px;
+  font-style: italic;
+
 }
+.message--bot .message__author {
+  font-style: italic;
+  color: red;
+}
+
+.message--bot .message__content {
+  background: #fff;
+  color:rgb(88, 92, 99);
+}
+
+
 
 .message--self .message__content {
   background: #3498db;
