@@ -22,9 +22,8 @@ const users = [];
   
   const server = app.listen(8000, () => {
     console.log('Server on port: 8000');
-  })
-  
-  //28.3 now !!
+  });
+
   const io = socket(server);
 
   io.on('connection', (socket) => {
